@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="MyTodolist_textSize_title_splash">20sp</dimen>
+    <dimen name="MyTodolist_textSize_description_splash">16sp</dimen>
+    <dimen name="MyTodolist_textSize_extButton_splash">16sp</dimen>
+
+    <dimen name="MyTodolist_textSize_title_home">16sp</dimen>
+    <dimen name="MyTodolist_textSize_extButton_home">16sp</dimen>
+    <dimen name="MyTodolist_textSize_edt_search_home">14sp</dimen>
+    <dimen name="MyTodolist_textSize_itemTitle_home">14sp</dimen>
+</resources>

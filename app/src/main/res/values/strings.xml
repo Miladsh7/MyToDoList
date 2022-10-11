@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">MyToDoList</string>
+    <string name="MyTodolist_app_name">یادداشت های من</string>
+    <string name="MyTodolist_splash_title_name">😊 سلام دوست من</string>
+    <string name="MyTodolist_description_app">برنامه یادداشت های من با طراحی ساده این امکان را به شما میدهد تا در سریع ترین زمان ممکن یادداشت های خود را ثبت کنید.</string>
+    <string name="MyTodolist_extButton_name">بزن بریم</string>
+    <string name="MyTodolist_edt_text_search">.. یادداشت خود را جست و جو کنید</string>
+    <string name="MyTodolist_title_emptyItem_home">هیچ یادداشتی موجود نیست.</string>
+    <string name="MyTodolist_explain_emptyItem_home">برای ایجاد یادداشت دکمه افزودن رو بزن</string>
+    <string name="MyTodolist_extButton_add">افزودن</string>
+
 </resources>

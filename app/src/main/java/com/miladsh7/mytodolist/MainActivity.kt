@@ -1,11 +1,22 @@
 package com.miladsh7.mytodolist
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import com.miladsh7.mytodolist.databinding.ActivityMainBinding
+import com.miladsh7.mytodolist.view.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity :BaseActivity() {
+
+    lateinit var binding: ActivityMainBinding
+    lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        navController = findNavController(R.id.nav_host_fragment_container)
+
     }
 }
