@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.miladsh7.mytodolist.R
 import com.miladsh7.mytodolist.data.model.TodoEntity
 import com.miladsh7.mytodolist.databinding.ItemTodoBinding
+import com.miladsh7.mytodolist.utils.EDIT
 import com.miladsh7.mytodolist.view.detail.Selection
 
-class TodoAdapter() : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
+class TodoAdapter(
+    private val onItemClick: (TodoEntity, String) -> Unit
+) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     private var items: List<TodoEntity> = listOf()
 
@@ -46,10 +49,14 @@ class TodoAdapter() : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
             binding.apply {
                 txtTitle.text = item.title
                 txtDescription.text = item.desc ?: ""
-                if (txtDescription.text.isNotEmpty() ){
+                if (txtDescription.text.isNotEmpty()) {
                     txtDescription.visibility = View.VISIBLE
-                }else{
+                } else {
                     txtDescription.visibility = View.GONE
+                }
+
+                root.setOnClickListener {
+                    onItemClick(item, EDIT)
                 }
 
                 when (item.selectionId) {
@@ -68,7 +75,10 @@ class TodoAdapter() : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
                         cardItem.apply {
                             setBackgroundColor(context.getColor(R.color.MyTodolist_backgroundItem_orange))
                             strokeColor =
-                                ContextCompat.getColor(context, R.color.MyTodolist_strokeItem_orange)
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color.MyTodolist_strokeItem_orange
+                                )
                         }
                     }
                     Selection.PINK.ordinal -> {
@@ -86,7 +96,10 @@ class TodoAdapter() : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
                         cardItem.apply {
                             setBackgroundColor(context.getColor(R.color.MyTodolist_backgroundItem_purple))
                             strokeColor =
-                                ContextCompat.getColor(context, R.color.MyTodolist_strokeItem_purple)
+                                ContextCompat.getColor(
+                                    context,
+                                    R.color.MyTodolist_strokeItem_purple
+                                )
                         }
                     }
                     Selection.RED.ordinal -> {

@@ -9,5 +9,7 @@ class TodoRepository @Inject constructor(
 ) {
     suspend fun insert(todoEntity: TodoEntity) = toDoDao.insert(todoEntity)
 
+    suspend fun update(todoEntity: TodoEntity) = toDoDao.update(todoEntity)
+
     fun getAllTodo() = toDoDao.getAllTodo()
 }

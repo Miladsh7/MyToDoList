@@ -16,6 +16,11 @@ class TodoColorAdapter(
 
     private var checkedPosition = colors.indexOf(Selection.BLUE)
 
+    fun setSelected(position: Int) {
+        checkedPosition = position
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(private val binding: ItemColorTodoBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Selection) {

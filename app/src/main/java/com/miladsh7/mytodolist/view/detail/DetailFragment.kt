@@ -7,12 +7,16 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.miladsh7.mytodolist.R
 import com.miladsh7.mytodolist.data.model.TodoEntity
 import com.miladsh7.mytodolist.databinding.FragmentDetailBinding
+import com.miladsh7.mytodolist.utils.EDIT
+import com.miladsh7.mytodolist.utils.NEW
+import com.miladsh7.mytodolist.utils.showIcon
 import com.miladsh7.mytodolist.view.adapter.TodoColorAdapter
 import com.miladsh7.mytodolist.view.base.BaseFragment
 import com.miladsh7.mytodolist.viewmodel.TodoViewModel
@@ -26,6 +30,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
 ) {
 
     private val viewModel: TodoViewModel by viewModels()
+    private val args: DetailFragmentArgs by navArgs()
 
     private val todoColorAdapter by lazy {
         TodoColorAdapter(generateColors()) {
@@ -35,6 +40,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
 
     private var selectionColorId = 0
     private var todoId = 0
+    private var type = ""
 
     @Inject
     lateinit var todoEntity: TodoEntity
@@ -58,6 +64,31 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
             allIconSelect.layoutManager = flexboxLayoutManager
             allIconSelect.adapter = todoColorAdapter
 
+            setTodoColorBackgroundColor(Selection.BLUE)
+
+            val todoID = args.entity
+            type = if (todoID != null) {
+                EDIT
+            } else {
+                NEW
+            }
+
+            if (type == EDIT) {
+                if (todoID != null) {
+                    edtTitle.setText(todoID.title)
+                    edtDescription.setText(todoID.desc)
+                    txtDateTimeDetail.text = todoID.calendar
+                    selectionColorId = todoID.selectionId
+                    todoColorAdapter.setSelected(selectionColorId)
+                    setTodoColorBackgroundColor(getSelection(selectionColorId))
+
+                    txtTitle.setText(R.string.MyTodolist_title_toolbar_edit_detail)
+
+                }
+            } else {
+                txtTitle.setText(R.string.MyTodolist_title_toolbar_addNote_detail)
+            }
+
             btnSave.setOnClickListener {
                 todoEntity.id = todoId
                 todoEntity.title = edtTitle.text.toString()
@@ -75,7 +106,21 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
                         findNavController().enableOnBackPressed(false)
                     }
                 }
-                viewModel.insert(todoEntity)
+                if (type == NEW) {
+                    if (edtTitle.text?.isNotEmpty() == true) {
+                        viewModel.insert(todoEntity)
+                    }
+                } else {
+                    binding.apply {
+                        todoID?.title = edtTitle.text.toString()
+                        todoID?.desc = edtDescription.text.toString()
+                        todoID?.calendar = todoEntity.calendar
+                        todoID?.selectionId = selectionColorId
+                    }
+                    if (todoID != null) {
+                        viewModel.update(todoID)
+                    }
+                }
             }
         }
         requireActivity().onBackPressedDispatcher
@@ -84,6 +129,18 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
                     findNavController().popBackStack()
                 }
             })
+    }
+
+    private fun getSelection(id: Int): Selection {
+        return when (id) {
+            0 -> Selection.BLUE
+            1 -> Selection.ORANGE
+            2 -> Selection.PINK
+            3 -> Selection.PURPLE
+            4 -> Selection.RED
+            5 -> Selection.GREEN
+            else -> Selection.BLUE
+        }
     }
 
     private fun generateColors() = listOf(

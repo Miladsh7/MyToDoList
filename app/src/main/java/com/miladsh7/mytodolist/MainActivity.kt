@@ -19,6 +19,5 @@ class MainActivity :BaseActivity() {
         setContentView(binding.root)
 
         navController = findNavController(R.id.nav_host_fragment_container)
-
     }
 }

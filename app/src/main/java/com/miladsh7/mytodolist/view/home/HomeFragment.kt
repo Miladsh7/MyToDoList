@@ -7,7 +7,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.miladsh7.mytodolist.R
+import com.miladsh7.mytodolist.data.model.TodoEntity
 import com.miladsh7.mytodolist.databinding.FragmentHomeBinding
+import com.miladsh7.mytodolist.utils.EDIT
 import com.miladsh7.mytodolist.utils.showInVisible
 import com.miladsh7.mytodolist.view.adapter.TodoAdapter
 import com.miladsh7.mytodolist.view.base.BaseFragment
@@ -21,13 +23,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 ) {
 
     private val viewModel: TodoViewModel by viewModels()
-
-    lateinit var todoAdapter: TodoAdapter
+    private val todoAdapter by lazy {
+        TodoAdapter { todoEntity: TodoEntity, s: String ->
+            onItemClick(todoEntity, s)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.apply {
-            todoAdapter = TodoAdapter()
             viewModel.todoLiveData.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
                     todoAdapter.setData(it)
@@ -47,6 +51,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                     HomeFragmentDirections.actionHomeFragmentToDetailFragment(entity = null)
                 findNavController().navigate(action)
             }
+        }
+    }
+
+    private fun onItemClick(todoEntity: TodoEntity, state: String) {
+        if (state == EDIT) {
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(todoEntity)
+            findNavController().navigate(action)
         }
     }
 }

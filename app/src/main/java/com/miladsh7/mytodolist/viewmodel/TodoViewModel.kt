@@ -22,4 +22,9 @@ class TodoViewModel @Inject constructor(
     fun insert(todoEntity: TodoEntity) = viewModelScope.launch {
         todoRepository.insert(todoEntity)
     }
+
+    fun update(todoEntity: TodoEntity) = viewModelScope.launch {
+        todoRepository.update(todoEntity)
+    }
+
 }
