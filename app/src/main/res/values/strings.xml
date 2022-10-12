@@ -7,5 +7,9 @@
     <string name="MyTodolist_title_emptyItem_home">هیچ یادداشتی موجود نیست.</string>
     <string name="MyTodolist_explain_emptyItem_home">برای ایجاد یادداشت دکمه افزودن رو بزن</string>
     <string name="MyTodolist_extButton_add">افزودن</string>
-
+    <string name="MyTodolist_title_toolbar_addNote_detail">افزودن یادداشت</string>
+    <string name="MyTodolist_title_toolbar_edit_detail">ویرایش</string>
+    <string name="MyTodolist_title_detail">عنوان</string>
+    <string name="MyTodolist_extButton_save">ذخیره</string>
+    <string name="MyTodolist_description_detail">توضیحات (اختیاری)</string>
 </resources>

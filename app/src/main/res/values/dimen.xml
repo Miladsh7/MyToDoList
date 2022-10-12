@@ -8,4 +8,12 @@
     <dimen name="MyTodolist_textSize_extButton_home">16sp</dimen>
     <dimen name="MyTodolist_textSize_edt_search_home">14sp</dimen>
     <dimen name="MyTodolist_textSize_itemTitle_home">14sp</dimen>
+
+    <dimen name="MyTodolist_textSize_extButton_save_detail">16sp</dimen>
+    <dimen name="MyTodolist_textSize_title_toolbar_detail">16sp</dimen>
+    <dimen name="MyTodolist_textSize_text_title_detail">12sp</dimen>
+    <dimen name="MyTodolist_textSize_edt_detail">14sp</dimen>
+    <dimen name="MyTodolist_textSize_calender_detail">12sp</dimen>
+    <dimen name="MyTodolist_textSize_date_time_detail">10sp</dimen>
+
 </resources>

@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.MyToDoList" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -51,6 +51,31 @@
 
     <style name="TextAppearanceBold.ItemTitle">
         <item name="android:textSize">@dimen/MyTodolist_textSize_itemTitle_home</item>
+    </style>
+
+    <style name="TextAppearanceBold.TitleToolbar">
+        <item name="android:textSize">@dimen/MyTodolist_textSize_title_toolbar_detail</item>
+        <item name="android:textColor">@color/MyTodolist_titleToolbar_detail</item>
+    </style>
+
+    <style name="TextAppearanceRegular.calenderAddNote">
+        <item name="android:textSize">@dimen/MyTodolist_textSize_calender_detail</item>
+        <item name="android:textColor">@color/MyTodolist_calender</item>
+    </style>
+
+    <style name="TextAppearanceRegular.Text_Title_Detail">
+        <item name="android:textSize">@dimen/MyTodolist_textSize_text_title_detail</item>
+        <item name="android:textColor">@color/MyTodolist_text_title_detail</item>
+    </style>
+
+    <style name="TextAppearanceRegular.Text_Edt_Detail">
+        <item name="android:textSize">@dimen/MyTodolist_textSize_edt_detail</item>
+        <item name="android:textColor">@color/MyTodolist_text_edt_detail</item>
+    </style>
+
+    <style name="TextAppearanceBold.extButton_save">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/MyTodolist_textSize_extButton_save_detail</item>
     </style>
 
 </resources>

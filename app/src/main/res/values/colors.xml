@@ -9,4 +9,26 @@
     <color name="MyTodolist_title_edt_search">#b2b2b2</color>
     <color name="MyTodolist_line_home">#f5f5f5</color>
 
+    <color name="MyTodolist_titleToolbar_detail">#000000</color>
+    <color name="MyTodolist_calender">#b2b2b2</color>
+    <color name="MyTodolist_text_title_detail">#3e4c65</color>
+    <color name="MyTodolist_text_edt_detail">#3e4c65</color>
+    <color name="MyTodolist_descriptions_detail">#fcfbfb</color>
+    <color name="MyTodolist_descriptionTitle_stroke_detail">#6273ed</color>
+    <color name="MyTodolist_iconColor_delete_detail">#ff3b33</color>
+
+    <color name="MyTodolist_color_blue">#33C0FF</color>
+    <color name="MyTodolist_color_red">#FF3B33</color>
+    <color name="MyTodolist_color_green">#3CD047</color>
+    <color name="MyTodolist_color_pink">#FF33EF</color>
+    <color name="MyTodolist_color_orange">#FFA933</color>
+    <color name="MyTodolist_color_purple">#B133FF</color>
+
+    <color name="MyTodolist_backgroundItem_blue">#f8fdff</color>
+    <color name="MyTodolist_backgroundItem_orange">#fffdf8</color>
+    <color name="MyTodolist_backgroundItem_pink">#fef8ff</color>
+    <color name="MyTodolist_backgroundItem_purple">#faf8ff</color>
+    <color name="MyTodolist_backgroundItem_red">#fff8f8</color>
+    <color name="MyTodolist_backgroundItem_green">#f8fffa</color>
+
 </resources>
