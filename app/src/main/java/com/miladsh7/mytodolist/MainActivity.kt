@@ -5,7 +5,9 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.miladsh7.mytodolist.databinding.ActivityMainBinding
 import com.miladsh7.mytodolist.view.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity :BaseActivity() {
 
     lateinit var binding: ActivityMainBinding

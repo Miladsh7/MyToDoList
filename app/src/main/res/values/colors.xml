@@ -31,4 +31,14 @@
     <color name="MyTodolist_backgroundItem_red">#fff8f8</color>
     <color name="MyTodolist_backgroundItem_green">#f8fffa</color>
 
+    <color name="MyTodolist_strokeItem_blue">#ddf2ff</color>
+    <color name="MyTodolist_strokeItem_orange">#ffe9dd</color>
+    <color name="MyTodolist_strokeItem_pink">#fbddff</color>
+    <color name="MyTodolist_strokeItem_purple">#f3ddff</color>
+    <color name="MyTodolist_strokeItem_red">#ffdddd</color>
+    <color name="MyTodolist_strokeItem_green">#deffdd</color>
+
+    <color name="MyTodolist_descItem">#374850</color>
+    <color name="MyTodolist_dateItem">#b2b2b2</color>
+
 </resources>
