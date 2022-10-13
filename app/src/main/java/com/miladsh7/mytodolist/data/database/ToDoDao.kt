@@ -14,7 +14,9 @@ interface ToDoDao {
     @Update
     suspend fun update(todoEntity: TodoEntity)
 
+    @Query("DELETE FROM $TABLE_TODO")
+    suspend fun deleteAll()
+
     @Query("SELECT * FROM $TABLE_TODO ORDER BY id DESC")
     fun getAllTodo(): LiveData<List<TodoEntity>>
-
 }

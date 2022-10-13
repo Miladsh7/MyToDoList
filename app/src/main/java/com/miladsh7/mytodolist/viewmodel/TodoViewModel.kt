@@ -27,4 +27,7 @@ class TodoViewModel @Inject constructor(
         todoRepository.update(todoEntity)
     }
 
+    fun deleteAll() = viewModelScope.launch {
+        todoRepository.deleteAll()
+    }
 }
