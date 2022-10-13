@@ -12,4 +12,7 @@
     <string name="MyTodolist_title_detail">عنوان</string>
     <string name="MyTodolist_extButton_save">ذخیره</string>
     <string name="MyTodolist_description_detail">توضیحات (اختیاری)</string>
+    <string name="MyTodolist_title_dialog_deleteAll_home">آیا مایل به حذف همه یادداشت ها هستید؟</string>
+    <string name="MyTodolist_title_buttonPositive_deleteAll_dialog">بله همه رو پاک کن </string>
+    <string name="MyTodolist_title_buttonNegative_dialog">انصراف</string>
 </resources>

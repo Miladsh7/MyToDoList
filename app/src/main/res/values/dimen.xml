@@ -18,4 +18,6 @@
     <dimen name="MyTodolist_textSize_calender_detail">12sp</dimen>
     <dimen name="MyTodolist_textSize_date_time_detail">10sp</dimen>
 
+    <dimen name="MyTodolist_textSize_title_delete">16sp</dimen>
+    <dimen name="MyTodolist_textSize_extButton_delete">16sp</dimen>
 </resources>

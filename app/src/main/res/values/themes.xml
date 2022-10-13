@@ -112,4 +112,23 @@
         <item name="android:textColor">@color/MyTodolist_color_purple</item>
     </style>
 
+    <style name="TextAppearanceRegular.TxtTitle_delete">
+        <item name="android:textColor">@color/MyTodolist_title_delete</item>
+        <item name="android:textSize">@dimen/MyTodolist_textSize_title_delete</item>
+    </style>
+
+    <style name="TextAppearanceBold.extButton_positiveButton">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/MyTodolist_textSize_extButton_delete</item>
+    </style>
+
+    <style name="TextAppearanceBold.extButton_negativeButton">
+        <item name="android:textColor">@color/MyTodolist_extButton_negative</item>
+        <item name="android:textSize">@dimen/MyTodolist_textSize_extButton_delete</item>
+    </style>
+
+    <style name="customAlertDialogThemOverly" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="dialogCornerRadius">8dp</item>
+    </style>
+
 </resources>

@@ -41,4 +41,6 @@
     <color name="MyTodolist_descItem">#374850</color>
     <color name="MyTodolist_dateItem">#b2b2b2</color>
 
+    <color name="MyTodolist_extButton_negative">#757575</color>
+    <color name="MyTodolist_title_delete">#FF000000</color>
 </resources>

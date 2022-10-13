@@ -1,13 +1,16 @@
 package com.miladsh7.mytodolist.view.home
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.miladsh7.mytodolist.R
 import com.miladsh7.mytodolist.data.model.TodoEntity
+import com.miladsh7.mytodolist.databinding.CustomDialogDeleteBinding
 import com.miladsh7.mytodolist.databinding.FragmentHomeBinding
 import com.miladsh7.mytodolist.utils.EDIT
 import com.miladsh7.mytodolist.utils.showInVisible
@@ -29,6 +32,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         }
     }
 
+    lateinit var bindingDeleteAll: CustomDialogDeleteBinding
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.apply {
@@ -45,6 +50,42 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                     emptyLay.showInVisible(true)
                     rvItemHome.showInVisible(false)
                 }
+
+                imgDeleteAll.isEnabled = it.isNotEmpty()
+                imgDeleteAll.background =
+                    if (it.isNotEmpty()) ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.delete
+                    )
+                    else ContextCompat.getDrawable(requireContext(), R.drawable.delete_gray)
+            }
+
+            imgDeleteAll.setOnClickListener {
+                val dialogDeleteAll = Dialog(requireContext(), R.style.customAlertDialogThemOverly)
+                bindingDeleteAll = CustomDialogDeleteBinding.inflate(layoutInflater)
+                dialogDeleteAll.setContentView(bindingDeleteAll.root)
+                dialogDeleteAll.show()
+
+                bindingDeleteAll.apply {
+                    txtTitleDelete.text =
+                        resources.getString(R.string.MyTodolist_title_dialog_deleteAll_home)
+
+                    positiveBtn.text =
+                        resources.getString(R.string.MyTodolist_title_buttonPositive_deleteAll_dialog)
+                    negativeBtn.text =
+                        resources.getString(R.string.MyTodolist_title_buttonNegative_dialog)
+
+                    positiveBtn.setOnClickListener {
+                        viewModel.deleteAll()
+                        dialogDeleteAll.dismiss()
+                        emptyLay.showInVisible(true)
+                    }
+
+                    negativeBtn.setOnClickListener {
+                        dialogDeleteAll.cancel()
+                    }
+                }
+
             }
             extButtonAdd.setOnClickListener {
                 val action =
