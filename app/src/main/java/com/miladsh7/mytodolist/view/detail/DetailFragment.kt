@@ -1,5 +1,6 @@
 package com.miladsh7.mytodolist.view.detail
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.miladsh7.mytodolist.R
 import com.miladsh7.mytodolist.data.model.TodoEntity
+import com.miladsh7.mytodolist.databinding.CustomDialogDeleteBinding
 import com.miladsh7.mytodolist.databinding.FragmentDetailBinding
 import com.miladsh7.mytodolist.utils.EDIT
 import com.miladsh7.mytodolist.utils.NEW
@@ -43,7 +45,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
     private var type = ""
 
     @Inject
-    lateinit var todoEntity: TodoEntity
+    lateinit var todoEntity : TodoEntity
+
+    lateinit var bindingDelete : CustomDialogDeleteBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -83,7 +87,36 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
                     setTodoColorBackgroundColor(getSelection(selectionColorId))
 
                     txtTitle.setText(R.string.MyTodolist_title_toolbar_edit_detail)
+                    imgDeleteEdit.showIcon(true)
 
+                    imgDeleteEdit.setOnClickListener {
+                        val dialogDelete =
+                            Dialog(requireContext(), R.style.customAlertDialogThemOverly)
+                        bindingDelete = CustomDialogDeleteBinding.inflate(layoutInflater)
+                        dialogDelete.setContentView(bindingDelete.root)
+                        dialogDelete.show()
+
+                        bindingDelete.apply {
+                            txtTitleDelete.text =
+                                resources.getString(R.string.todolist_title_dialog_edit_detail)
+
+                            positiveBtn.text =
+                                resources.getString(R.string.MyTodolist_title_buttonPositive_dialog)
+                            negativeBtn.text =
+                                resources.getString(R.string.todolist_title_buttonNegative_dialog)
+
+                            positiveBtn.setOnClickListener {
+                                viewModel.delete(todoID)
+                                dialogDelete.dismiss()
+                                val action =
+                                    DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+                                findNavController().navigate(action)
+                            }
+                            negativeBtn.setOnClickListener {
+                                dialogDelete.cancel()
+                            }
+                        }
+                    }
                 }
             } else {
                 txtTitle.setText(R.string.MyTodolist_title_toolbar_addNote_detail)

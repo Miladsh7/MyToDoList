@@ -13,6 +13,8 @@ class TodoRepository @Inject constructor(
 
     suspend fun update(todoEntity: TodoEntity) = toDoDao.update(todoEntity)
 
+    suspend fun delete(todoEntity: TodoEntity) = toDoDao.delete(todoEntity)
+
     suspend fun deleteAll() = toDoDao.deleteAll()
 
     fun getAllTodo() = toDoDao.getAllTodo()
