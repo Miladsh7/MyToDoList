@@ -14,6 +14,9 @@ interface ToDoDao {
     @Update
     suspend fun update(todoEntity: TodoEntity)
 
+    @Delete
+    suspend fun delete(todoEntity: TodoEntity)
+
     @Query("DELETE FROM $TABLE_TODO")
     suspend fun deleteAll()
 
