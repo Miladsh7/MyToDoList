@@ -1,5 +1,6 @@
 package com.miladsh7.mytodolist.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -33,5 +34,9 @@ class TodoViewModel @Inject constructor(
 
     fun deleteAll() = viewModelScope.launch {
         todoRepository.deleteAll()
+    }
+
+    fun search(query: String): LiveData<List<TodoEntity>> {
+        return todoRepository.search(query)
     }
 }

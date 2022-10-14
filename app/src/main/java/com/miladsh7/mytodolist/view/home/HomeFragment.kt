@@ -2,6 +2,8 @@ package com.miladsh7.mytodolist.view.home
 
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -80,13 +82,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                         dialogDeleteAll.dismiss()
                         emptyLay.showInVisible(true)
                     }
-
                     negativeBtn.setOnClickListener {
                         dialogDeleteAll.cancel()
                     }
                 }
 
             }
+            edtSearch.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    onSearch(p0.toString())
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+
+                }
+
+            })
             extButtonAdd.setOnClickListener {
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToDetailFragment(entity = null)
@@ -100,6 +115,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             val action =
                 HomeFragmentDirections.actionHomeFragmentToDetailFragment(todoEntity)
             findNavController().navigate(action)
+        }
+    }
+
+    private fun onSearch(query: String) {
+        if (query != null) {
+            viewModel.search(query).observe(viewLifecycleOwner) {
+                todoAdapter.setData(it)
+            }
+        } else {
+            viewModel.todoLiveData.observe(viewLifecycleOwner) {
+                todoAdapter.setData(it)
+            }
         }
     }
 }
