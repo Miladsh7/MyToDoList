@@ -1,5 +1,6 @@
 package com.miladsh7.mytodolist.data.repository
 
+import androidx.lifecycle.LiveData
 import androidx.room.Query
 import com.miladsh7.mytodolist.data.database.ToDoDao
 import com.miladsh7.mytodolist.data.model.TodoEntity
@@ -18,4 +19,8 @@ class TodoRepository @Inject constructor(
     suspend fun deleteAll() = toDoDao.deleteAll()
 
     fun getAllTodo() = toDoDao.getAllTodo()
+
+    fun search(query: String): LiveData<List<TodoEntity>> {
+        return toDoDao.search(query)
+    }
 }
