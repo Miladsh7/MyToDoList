@@ -1,6 +1,7 @@
 package com.miladsh7.mytodolist.view.detail
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -45,9 +46,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
     private var type = ""
 
     @Inject
-    lateinit var todoEntity : TodoEntity
+    lateinit var todoEntity: TodoEntity
 
-    lateinit var bindingDelete : CustomDialogDeleteBinding
+    lateinit var bindingDelete: CustomDialogDeleteBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -88,6 +89,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
 
                     txtTitle.setText(R.string.MyTodolist_title_toolbar_edit_detail)
                     imgDeleteEdit.showIcon(true)
+                    imgShareEdit.showIcon(true)
 
                     imgDeleteEdit.setOnClickListener {
                         val dialogDelete =
@@ -116,6 +118,19 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
                                 dialogDelete.cancel()
                             }
                         }
+                    }
+
+                    imgShareEdit.setOnClickListener {
+                        val intent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(
+                                Intent.EXTRA_TEXT,
+                                "${resources.getString(R.string.MyTodolist_title_detail)} : ${todoID.title} " +
+                                        "\n ${resources.getString(R.string.MyTodolist_description_detail)} : ${todoID.desc} \n ${todoID.calendar}"
+                            )
+                            type = ("text/plain")
+                        }
+                        startActivity(intent)
                     }
                 }
             } else {
