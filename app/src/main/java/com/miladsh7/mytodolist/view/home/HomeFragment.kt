@@ -1,8 +1,6 @@
 package com.miladsh7.mytodolist.view.home
 
 import android.app.Dialog
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -90,15 +88,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 }
 
             }
-
-            imgShare.setOnClickListener {
-                val intent = Intent().apply {
-                    action = Intent.ACTION_VIEW
-                    data = Uri.parse("https://cafebazaar.ir/app/com.miladsh7.mytodolist")
-                }
-                startActivity(intent)
-            }
-
             edtSearch.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
