@@ -55,6 +55,8 @@ class TodoAdapter(
                     txtDescription.visibility = View.GONE
                 }
 
+                txtDateTime.text = item.calendar ?: "تایم تنظیم نشده"
+
                 root.setOnClickListener {
                     onItemClick(item, EDIT)
                 }
