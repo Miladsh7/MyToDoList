@@ -88,14 +88,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                         dialogDeleteAll.cancel()
                     }
                 }
-
             }
 
             imgShare.setOnClickListener {
                 val intent = Intent().apply {
                     action = Intent.ACTION_VIEW
-                    data = Uri.parse("https://cafebazaar.ir/app/com.miladsh7.mytodolist")
+                    data = Uri.parse("https://cafebazaar.ir/app/com.miladsh7.todolist")
                 }
+
                 startActivity(intent)
             }
 
