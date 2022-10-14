@@ -18,6 +18,7 @@ import com.miladsh7.mytodolist.data.model.TodoEntity
 import com.miladsh7.mytodolist.databinding.CustomDialogDeleteBinding
 import com.miladsh7.mytodolist.databinding.FragmentDetailBinding
 import com.miladsh7.mytodolist.utils.EDIT
+import com.miladsh7.mytodolist.utils.Gregorian
 import com.miladsh7.mytodolist.utils.NEW
 import com.miladsh7.mytodolist.utils.showIcon
 import com.miladsh7.mytodolist.view.adapter.TodoColorAdapter
@@ -52,9 +53,14 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val gregorian = Gregorian()
+        val calendar = gregorian.getCurrentSolarDate()
+
         binding.apply {
 
             txtTitle.setText(R.string.MyTodolist_title_toolbar_addNote_detail)
+
+            txtDateTimeDetail.text = calendar
 
             imgBackDetail.setOnClickListener {
                 val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
@@ -142,6 +148,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
                 todoEntity.title = edtTitle.text.toString()
                 todoEntity.desc = edtDescription.text.toString()
                 todoEntity.selectionId = selectionColorId
+                todoEntity.calendar = calendar
 
                 if (edtTitle.length() > 0) {
                     val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
