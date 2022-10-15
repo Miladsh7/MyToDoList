@@ -23,6 +23,6 @@ interface ToDoDao {
     @Query("SELECT * FROM $TABLE_TODO ORDER BY id DESC")
     fun getAllTodo(): LiveData<List<TodoEntity>>
 
-    @Query ("SELECT * FROM $TABLE_TODO WHERE title LIKE '%' || :query ||'%'")
+    @Query("SELECT * FROM $TABLE_TODO WHERE title LIKE '%' || :query ||'%'")
     fun search(query: String): LiveData<List<TodoEntity>>
 }

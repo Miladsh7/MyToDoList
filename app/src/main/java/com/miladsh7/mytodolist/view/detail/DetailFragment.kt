@@ -17,10 +17,7 @@ import com.miladsh7.mytodolist.R
 import com.miladsh7.mytodolist.data.model.TodoEntity
 import com.miladsh7.mytodolist.databinding.CustomDialogDeleteBinding
 import com.miladsh7.mytodolist.databinding.FragmentDetailBinding
-import com.miladsh7.mytodolist.utils.EDIT
-import com.miladsh7.mytodolist.utils.Gregorian
-import com.miladsh7.mytodolist.utils.NEW
-import com.miladsh7.mytodolist.utils.showIcon
+import com.miladsh7.mytodolist.utils.*
 import com.miladsh7.mytodolist.view.adapter.TodoColorAdapter
 import com.miladsh7.mytodolist.view.base.BaseFragment
 import com.miladsh7.mytodolist.viewmodel.TodoViewModel
@@ -84,12 +81,20 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
                 NEW
             }
 
+            if (type == NEW) {
+                showKeyboard()
+                edtTitle.requestFocus()
+            } else {
+                hideKeyboard()
+            }
+
             if (type == EDIT) {
                 if (todoID != null) {
                     edtTitle.setText(todoID.title)
                     edtDescription.setText(todoID.desc)
                     txtDateTimeDetail.text = todoID.calendar
                     selectionColorId = todoID.selectionId
+
                     todoColorAdapter.setSelected(selectionColorId)
                     setTodoColorBackgroundColor(getSelection(selectionColorId))
 
@@ -106,12 +111,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
 
                         bindingDelete.apply {
                             txtTitleDelete.text =
-                                resources.getString(R.string.todolist_title_dialog_edit_detail)
+                                resources.getString(R.string.MyTodolist_title_dialog_edit_detail)
 
                             positiveBtn.text =
                                 resources.getString(R.string.MyTodolist_title_buttonPositive_dialog)
                             negativeBtn.text =
-                                resources.getString(R.string.todolist_title_buttonNegative_dialog)
+                                resources.getString(R.string.MyTodolist_title_buttonNegative_dialog)
 
                             positiveBtn.setOnClickListener {
                                 viewModel.delete(todoID)
@@ -155,8 +160,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(
                     findNavController().navigate(action)
 
                 } else {
-                    Toast.makeText(requireContext(), "عنوان نباید خالی باشد", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.MyTodolist_msg_detail,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
                     imgBackDetail.setOnClickListener {
                         findNavController().enableOnBackPressed(false)
                     }
