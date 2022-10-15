@@ -17,11 +17,13 @@ import com.miladsh7.mytodolist.data.model.TodoEntity
 import com.miladsh7.mytodolist.databinding.CustomDialogDeleteBinding
 import com.miladsh7.mytodolist.databinding.FragmentHomeBinding
 import com.miladsh7.mytodolist.utils.EDIT
+import com.miladsh7.mytodolist.utils.hideKeyboard
 import com.miladsh7.mytodolist.utils.showInVisible
 import com.miladsh7.mytodolist.view.adapter.TodoAdapter
 import com.miladsh7.mytodolist.view.base.BaseFragment
 import com.miladsh7.mytodolist.viewmodel.TodoViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(
@@ -36,10 +38,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         }
     }
 
+    @Inject
+    lateinit var todoEntity: TodoEntity
+
     lateinit var bindingDeleteAll: CustomDialogDeleteBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        hideKeyboard()
         binding.apply {
             viewModel.todoLiveData.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
@@ -88,7 +93,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                         dialogDeleteAll.cancel()
                     }
                 }
-
             }
 
             imgShare.setOnClickListener {
@@ -130,7 +134,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     private fun onSearch(query: String) {
-        if (query != null) {
+
+        if (query.isNotEmpty()) {
             viewModel.search(query).observe(viewLifecycleOwner) {
                 todoAdapter.setData(it)
             }
