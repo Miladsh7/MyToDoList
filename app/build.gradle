@@ -8,15 +8,15 @@ plugins {
 }
 
 android {
-    namespace 'com.miladsh7.mytodolist'
+    namespace 'com.miladsh.mytodoList'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.miladsh7.mytodolist"
+        applicationId "com.miladsh.mytodoList"
         minSdk 21
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

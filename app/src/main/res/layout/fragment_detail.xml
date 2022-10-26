@@ -72,15 +72,15 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="fill_vertical"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+       >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_nested"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="56dp">
+            >
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_date_time_detail"
@@ -117,6 +117,7 @@
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
+                    android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                     app:reverseLayout="true"
@@ -155,9 +156,10 @@
                             android:id="@+id/edt_title"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:background="@drawable/edt_title_detail_background"
                             android:paddingStart="12dp"
                             android:paddingEnd="36dp"
+                            android:maxLines="1"
+                            android:singleLine="true"
                             android:textAppearance="@style/TextAppearanceRegular.Text_Edt_Detail"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -193,18 +195,26 @@
                         android:text="@string/MyTodolist_description_detail"
                         android:textAppearance="@style/TextAppearanceRegular.Text_Title_Detail" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edt_description"
+                    <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_below="@id/txt_title_description"
-                        android:background="@drawable/edt_desc_detail_background"
-                        android:gravity="start"
-                        android:minLines="4"
-                        android:paddingStart="12dp"
-                        android:paddingTop="12dp"
-                        android:paddingEnd="15dp"
-                        android:textAppearance="@style/TextAppearanceRegular.Text_Edt_Detail" />
+                        android:layout_height="match_parent">
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edt_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:scrollbars="vertical"
+                            android:layout_below="@id/txt_title_description"
+                            android:background="@drawable/edt_desc_detail_background"
+                            android:gravity="start"
+                            android:minLines="4"
+                            android:overScrollMode="always"
+                            android:scrollHorizontally="true"
+                            android:paddingStart="12dp"
+                            android:paddingTop="12dp"
+                            android:paddingEnd="15dp"
+                            android:textAppearance="@style/TextAppearanceRegular.Text_Edt_Detail" />
+                    </androidx.core.widget.NestedScrollView>
+
                 </RelativeLayout>
 
             </RelativeLayout>
